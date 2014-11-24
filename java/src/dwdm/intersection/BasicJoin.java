@@ -1,5 +1,6 @@
 package dwdm.intersection;
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,21 +30,23 @@ import java.util.Set;
  */
 public class BasicJoin {
 	
-	private static final String fileEntry1 = "/Users/rafael/Downloads/f1/file1.txt";
-	private static final String fileEntry2 = "/Users/rafael/Downloads/f2/fila4.txt";
-	static List<Long> arr1 = new ArrayList<Long>();	
-	static List<Long> arr2 = new ArrayList<Long>();	
+	//private static final String fileEntry1 = "/Users/rafael/Downloads/f1/file1.txt";
+	//private static final String fileEntry2 = "/Users/rafael/Downloads/f2/fila4.txt";
+	//static List<Long> arr1 = new ArrayList<Long>();	
+	//static List<Long> arr2 = new ArrayList<Long>();	
 
 
 	
-	private final static File folder1 = new File("/Users/rafael/Downloads/f1/file4.txt");
-	private final static File folder2 = new File("/Users/rafael/Downloads/f2/fila4.txt");
+	//private final static File folder1 = new File("/Users/rafael/Downloads/f1/file4.txt");
+	//private final static File folder2 = new File("/Users/rafael/Downloads/f2/fila4.txt");
 	 
 
 	public static void main(String[] args) throws IOException {
 
 		//Set<Long> list = new HashSet<Long>();
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("/Users/rafael/Downloads/outal.txt")));
+		File fileEntry1 = new File(args[0]);
+		File fileEntry2 = new File(args[1]);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("/Users/rafael/Downloads/output.txt")));
 		
 		//for (File fileEntry : folder1.listFiles()) {
 			//HashSet<String> ar1 = new HashSet<String>();
