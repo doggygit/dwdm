@@ -46,7 +46,7 @@ public class BasicJoin {
 		//Set<Long> list = new HashSet<Long>();
 		File fileEntry1 = new File(args[0]);
 		File fileEntry2 = new File(args[1]);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("args[2]")));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(args[2])));
 		
 		//for (File fileEntry : folder1.listFiles()) {
 			//HashSet<String> ar1 = new HashSet<String>();
