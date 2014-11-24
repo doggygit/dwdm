@@ -60,7 +60,6 @@ public class Utils {
 		}
 		while (iterator1.hasNext() && iterator2.hasNext()) {
 
-			System.out.println("x: " + x + " y: " + y);
 			while (x.getNumber() < y.getNumber() && iterator1.hasNext()) {
 
 				x = iterator1.next();
