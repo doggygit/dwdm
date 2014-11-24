@@ -1,4 +1,4 @@
-package dwdm.intersection
+package dwdm.intersection;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,7 +34,7 @@ public class BasicJoin {
 	static List<Long> arr1 = new ArrayList<Long>();	
 	static List<Long> arr2 = new ArrayList<Long>();	
 
-	static String[] theArray;
+	private static String[] theArray;
 	int a;
 
 	
@@ -104,3 +104,4 @@ public class BasicJoin {
 		
 	
 	}
+}
