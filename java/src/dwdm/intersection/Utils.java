@@ -31,13 +31,18 @@ public class Utils {
 		int len = input.read(buffer);
 		while(len != -1){
 			for(int i = 0; i < len / 6; i++){
-				list.add(new Entry(buffer, i * 6));
+				try{
+					list.add(new Entry(buffer, i * 6));
+				} catch (IllegalArgumentException ignored){
+					
+				}
 			}
 			len = input.read(buffer);
 		}
 		input.close();
 		return list;
-		
 	}
+	
+	
 
 }
