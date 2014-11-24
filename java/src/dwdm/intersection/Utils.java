@@ -1,5 +1,7 @@
 package dwdm.intersection;
 
+import static java.lang.Long.parseLong;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -14,8 +16,13 @@ public class Utils {
 	
 	private static final int chunks = 24;
 	
-	public int hashLong(long x){
+	public static int hashLong(long x){
 		return (int) ((((a*x) + b) % prime) % chunks);
+	}
+	
+	public static int hashLong(String s){
+		long l = parseLong(s.substring(1));
+		return hashLong(l);
 	}
 	
 	public static List<Entry> read(InputStream input) throws IOException{

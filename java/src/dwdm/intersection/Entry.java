@@ -2,6 +2,7 @@ package dwdm.intersection;
 
 import static java.lang.Long.parseLong;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -47,6 +48,10 @@ public class Entry {
 		array[offset + 3] = (byte) (number >> 16);
 		array[offset + 2] = (byte) (number >> 24);
 		array[offset + 1] = (byte) (number >> 32);
+	}
+	
+	public static void toByte(ChunkWriter writer, String entry) throws IOException{
+		toByte(writer.buffer, writer.getNextIndex(), entry);
 	}
 
 	
