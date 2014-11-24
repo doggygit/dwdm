@@ -29,15 +29,12 @@ import java.util.Set;
  */
 public class BasicJoin {
 	
-	private static final String fileEntry = "/Users/rafael/Downloads/f1/file1.txt";
+	private static final String fileEntry1 = "/Users/rafael/Downloads/f1/file1.txt";
 	private static final String fileEntry2 = "/Users/rafael/Downloads/f2/fila4.txt";
 	static List<Long> arr1 = new ArrayList<Long>();	
 	static List<Long> arr2 = new ArrayList<Long>();	
 
-	private static String[] theArray;
-	int a;
 
-	
 	
 	private final static File folder1 = new File("/Users/rafael/Downloads/f1/file4.txt");
 	private final static File folder2 = new File("/Users/rafael/Downloads/f2/fila4.txt");
@@ -50,25 +47,19 @@ public class BasicJoin {
 		
 		//for (File fileEntry : folder1.listFiles()) {
 			//HashSet<String> ar1 = new HashSet<String>();
-			BufferedReader reader = new BufferedReader(new FileReader(fileEntry));
+			BufferedReader reader = new BufferedReader(new FileReader(fileEntry1));
 			while (reader.readLine() != null) {
 				String lino = (reader.readLine().substring(1));
 				Long line = Long.parseLong(lino);
 				arr1.add(line);
-				//Collections.sort(ar1);
 			}
-			//for (final File fileEntry2 : folder2.listFiles()) {
-				//HashSet<String> ar2 = new HashSet<String>();
 				BufferedReader reader2 = new BufferedReader(new FileReader(fileEntry2));
 				while (reader2.readLine() != null) {
 					String lino = (reader2.readLine().substring(1));
 					Long line = Long.parseLong(lino);
-					//System.out.print(lino + "\n");
 					arr1.add(line);
-					//Collections.sort(ar2);
 				}
 				
-				//Collections.sort(arr1);
 				System.out.print(arr1.size());
 				
 			    
@@ -100,8 +91,6 @@ public class BasicJoin {
 		
 		
 		writer.close();
-		
-		
 	
 	}
 }
