@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @author Christian Windolf
  *
  */
-public class Entry {
+public class Entry implements Comparable<Entry>{
 	private static final NumberFormat format = new DecimalFormat("0000000000");
 	
 	private final byte[] data = new byte[6];
@@ -24,6 +24,9 @@ public class Entry {
 	}
 	
 	public Entry(byte[] bytes, int offset){
+		if(bytes[offset] == 0){
+			throw new IllegalArgumentException("First letter must be an ASCII code");
+		}
 		for(int i = 0; i < 6; i++){
 			data[i] = bytes[offset + i];
 		}
@@ -68,6 +71,10 @@ public class Entry {
 		return data;
 	}
 	
+	public char getChar(){
+		return (char) data[0];
+	}
+	
 	
 	
 	@Override
@@ -101,6 +108,28 @@ public class Entry {
 		if (!Arrays.equals(data, other.data))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Entry other) {
+		long this_number = this.getNumber();
+		long other_number = other.getNumber();
+		if(this_number < other_number){
+			return -1;
+		} else if(this_number > other_number){
+			return 1;
+		} else {
+			if(this.data[0] < other.data[0]){
+				return -1;
+			} else if (this.data[0] > other.data[0]){
+				return 1;
+			} else {
+				return 0;
+			}
+			
+		}
+
+
 	}
 	
 	
