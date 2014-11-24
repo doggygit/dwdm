@@ -71,6 +71,10 @@ public class Entry implements Comparable<Entry>{
 		return data;
 	}
 	
+	public char getChar(){
+		return (char) data[0];
+	}
+	
 	
 	
 	@Override

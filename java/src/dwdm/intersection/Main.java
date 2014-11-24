@@ -1,9 +1,15 @@
 package dwdm.intersection;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
+	
+	public static final int NUMBER_OF_BUCKETS = 48;
 
 	/**
 	 * input files
@@ -59,7 +65,8 @@ public class Main {
 		}
 		
 		if(tmpFolder == null){
-			tmpFolder = File.createTempFile("join", "parts");
+			tmpFolder = new File("/tmp/buckets");
+			
 			if(!tmpFolder.mkdir()){
 				System.err.println("Failed to create temporary directory in");
 			}
@@ -67,7 +74,7 @@ public class Main {
 		
 		for(int i = 0; i < args.length; i++){
 			if("-o".equals(args[i])){
-				outputFile = exists(new File(args[i + 1]));
+				outputFile = new File(args[i + 1]);
 			}
 		}
 		
@@ -97,10 +104,10 @@ public class Main {
 		tmp2.mkdir();
 		
 		Chunker chunker1 = new Chunker(file1, tmp1);
-		chunker1.setChunks(24);
+		chunker1.setChunks(NUMBER_OF_BUCKETS);
 		
 		Chunker chunker2 = new Chunker(file2, tmp2);
-		chunker2.setChunks(24);
+		chunker2.setChunks(NUMBER_OF_BUCKETS);
 		
 		Thread t1 = new Thread(chunker1);
 		Thread t2 = new Thread(chunker2);
@@ -113,6 +120,19 @@ public class Main {
 		
 		long stop = System.currentTimeMillis();
 		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+		for(int i = 0; i < NUMBER_OF_BUCKETS; i++){
+			List<Entry> list1 = Utils.read(new FileInputStream(new File(tmp1, ChunkWriter.filename(i))));
+			List<Entry> list2 = Utils.read(new FileInputStream(new File(tmp2, ChunkWriter.filename(i))));
+			List<Entry> joined = Utils.join(list1, list2);
+			
+			for(Entry e : joined){
+				writer.write(e.toString());
+				writer.write("\n");
+			}
+			writer.flush();
+		}
+		writer.close();
 		long diff = stop - start;
 		System.out.println("Used " + diff + " milliseconds (" + (diff/1000) + " s)");
 		System.out.println("chunk files are in " + tmpFolder.getAbsolutePath());

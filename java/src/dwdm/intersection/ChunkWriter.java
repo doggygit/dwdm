@@ -10,14 +10,18 @@ import java.util.Arrays;
 
 public class ChunkWriter {
 	
-	private static final NumberFormat format = new DecimalFormat("00");
+	public static final NumberFormat format = new DecimalFormat("00");
 	
 	private final OutputStream output;
 	
 	//space for 32 000 entries
-	public byte[] buffer = new byte[192_000];
+	public byte[] buffer = new byte[96_000];
 	
 	private int pointer = 0;
+	
+	public static String filename(int id){
+		return "chunk" + format.format(id) + ".cpr";
+	}
 	
 	public ChunkWriter(File folder, int id) throws IOException{
 		File f = new File(folder, "chunk" + format.format(id)+ ".cpr");
@@ -28,7 +32,7 @@ public class ChunkWriter {
 	public int getNextIndex() throws IOException{
 		int index = this.pointer * 6;
 		this.pointer++;
-		if(this.pointer == 32_000){
+		if(this.pointer == 16_000){
 			output.write(buffer);
 			output.flush();
 			pointer = 0;
