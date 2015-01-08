@@ -1,6 +1,5 @@
 package dwdm.index;
 
-import static org.junit.Assert.*;
 import net.sf.jsi.SpatialIndex;
 
 import java.io.ByteArrayInputStream;
@@ -9,11 +8,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 
 import org.junit.Before;
-import org.junit.Test;
 
+/**
+ * Overrides the set up by first writing the index into a
+ * serialized byte representation and then read it again as a 
+ * Java object.
+ * To verify this process, the tests from {@link IndexTest} are
+ * reused
+ * @author Christian Windolf
+ *
+ */
 public class IndexTest2 extends IndexTest {
 
 	@Before
