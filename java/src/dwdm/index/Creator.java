@@ -57,12 +57,12 @@ public class Creator {
 	 *
 	 */
 	static class CreatorConfig{
-		public static final Map<String, String> defaultPaths;
+		public static final Map<String, String> databasePaths;
 		
 		static{
-			defaultPaths = new HashMap<>();
+			databasePaths = new HashMap<>();
 			//Christians defualt path
-			defaultPaths.put("doggy", "/home/doggy/data/141017.so6");
+			databasePaths.put("doggy", "/home/doggy/data/141017.so6");
 			
 			//Rafa, Michael, you can hard code your locations here 
 			//defaultPaths.put("rafa", "/path/to/141017.so6");
@@ -85,7 +85,7 @@ public class Creator {
 				}
 			}
 			if(inputFile == null){
-				inputFile = defaultPaths.get(System.getProperty("user.name"));
+				inputFile = databasePaths.get(System.getProperty("user.name"));
 			}
 			if(inputFile == null){
 				throw new CreatorParameterException("you must specifiy an input file with the -i flag");
