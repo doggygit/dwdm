@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+exit if ARGV.length < 2
+
+input=File.open(ARGV[0], 'r')
+
+output=File.open(ARGV[1], 'w')
+
+input.each_line do |line|
+  output.puts(line.chomp + ( ' ' * (151 - line.length) ))
+end
