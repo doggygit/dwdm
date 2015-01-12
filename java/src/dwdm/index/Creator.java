@@ -90,7 +90,7 @@ public class Creator {
 			if(inputFile == null){
 				File f = new File("/DWDM2014/uebung4/141017.so6");
 				if(f.isFile()){
-					this.inputFile = f;
+					inputFile = "/DWDM2014/uebung4/141017.so6";
 				}
 			}
 			if(inputFile == null){
