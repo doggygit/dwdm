@@ -52,8 +52,8 @@ public class Lookup {
 	
 	static class LookupConfig{
 		//default path on delphi
-		String indexPath = "/vol/fob-vol15/nebenf14/christia/141017.ind";
-		String databasePath = "/vol/fob-vol15/nebenf14/christia/141017_eq.so6";
+		String indexPath = "/vol/fob-vol5/nebenf14/christia/141017.ind";
+		String databasePath = "/vol/fob-vol5/nebenf14/christia/141017_eq.so6";
 		
 		File index;
 		File database;
