@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.file.OpenOption;
-import java.nio.file.attribute.FileAttribute;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,7 +52,6 @@ public class QueryEngine {
 		String[] elements = line.split(" ");
 		int begin = parseInt(elements[4]);
 		int end = parseInt(elements[5]);
-		System.out.println("begin: " + begin + " end: " + end);
 		return between(begin, query.getTime1(), end) || between (begin, query.getTime2(), end); 
 
 	}

@@ -1,26 +1,50 @@
 package dwdm.index;
 
+
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import net.sf.jsi.Rectangle;
+import net.sf.jsi.SpatialIndex;
 
 public class Lookup {
 	
 	static LookupConfig config;
 	
 	public static void main(String[] args){
+		long start = System.currentTimeMillis();
 		try{
 			config = new LookupConfig(args);
-			System.out.println(config);
+			lookup();
 		} catch(ParameterException ex){
 			ex.print();
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("Execution took " + (end - start) + " milliseconds");
+	}
+	
+	private static void lookup() throws FileNotFoundException, IOException, ClassNotFoundException{
+		ObjectInputStream indexInput = new ObjectInputStream(new FileInputStream(config.getIndex()));
+		SpatialIndex index = (SpatialIndex) indexInput.readObject();
+		indexInput.close();
+		QueryEngine engine = new QueryEngine(index, config.getDatabase());
+		List<String> results = engine.execute(config.getQuery());
+		System.out.println("Found " + results.size() + " results");
+		int counter = 0;
+		for(String r : results){
+			System.out.println(++counter + ": " + r);
+		}
+		
 	}
 	
 	
@@ -81,7 +105,7 @@ public class Lookup {
 			}
 			
 			if(args.length > 6){
-				args = Arrays.copyOfRange(args, 6, args.length - 6);
+				args = Arrays.copyOfRange(args, 6, args.length);
 				for(int i = 0; i < args.length; i++){
 					if(args[i].equals("-i") && i < args.length - 1){
 						indexPath = args[++i];
@@ -146,6 +170,10 @@ public class Lookup {
 		
 		public Rectangle getRectangle(){
 			return new Rectangle(lon1, lat1, lon2, lat2);
+		}
+		
+		public Query getQuery(){
+			return new Query(getRectangle(), time1, time2);
 		}
 		
 		public String toString(){

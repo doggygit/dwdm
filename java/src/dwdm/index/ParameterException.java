@@ -4,13 +4,10 @@ package dwdm.index;
 public class ParameterException extends Exception {
 	private final String example;
 	
-	
-
 	public ParameterException(String reason, String example) {
 		super(reason);
 		this.example = example;
 	}
-	
 	
 	public String getExample(){
 		return example;
