@@ -88,6 +88,12 @@ public class Creator {
 				inputFile = databasePaths.get(System.getProperty("user.name"));
 			}
 			if(inputFile == null){
+				File f = new File("/DWDM2014/uebung4/141017.so6");
+				if(f.isFile()){
+					this.inputFile = f;
+				}
+			}
+			if(inputFile == null){
 				throw new CreatorParameterException("you must specifiy an input file with the -i flag");
 			}
 			this.inputFile = new File(inputFile);
